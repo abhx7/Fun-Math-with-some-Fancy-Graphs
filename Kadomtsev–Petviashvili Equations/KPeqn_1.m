@@ -1,12 +1,12 @@
-% KP-II equation solver using finite differences
+% KP-II equation solver with real-time 3D plotting
+
 % Parameters
-Lx = 20;         % Length in x-direction
-Ly = 20;         % Length in y-direction
+Lx = 50;         % Length in x-direction
+Ly = 100;         % Length in y-direction
 Nx = 100;        % Number of grid points in x
 Ny = 100;        % Number of grid points in y
-T = 10;          % Total simulation time
-dt = 0.01;       % Time step size
-cfl = 0.1;       % CFL number for stability
+T = 1;          % Total simulation time
+dt = 0.001;       % Time step size
 
 dx = Lx / Nx;    % Spatial step in x
 dy = Ly / Ny;    % Spatial step in y
@@ -24,6 +24,19 @@ kx = (2*pi/Lx) * [0:(Nx/2-1), -Nx/2:-1]; % Fourier wave numbers in x
 ky = (2*pi/Ly) * [0:(Ny/2-1), -Ny/2:-1]; % Fourier wave numbers in y
 [KX, KY] = meshgrid(kx, ky);
 K_sq = KX.^2 + KY.^2;
+
+% Initialize figure for real-time plotting
+figure;
+h = surf(X, Y, u, 'EdgeColor', 'none');
+xlabel('x');
+ylabel('y');
+zlabel('u');
+title('Real-time 3D Plot of KP-II Solution');
+axis([-Lx/2, Lx/2, -Ly/2, Ly/2, -1, 1]);
+caxis([-1, 1]);
+colormap jet;
+colorbar;
+view(3);
 
 % Time-stepping loop
 for t = 0:dt:T
@@ -43,12 +56,8 @@ for t = 0:dt:T
     % Inverse Fourier transform to obtain new u in physical space
     u = real(ifft2(u_hat_new));
     
-    % Plot the solution every few steps
-    if mod(t, 0.5) < dt
-        surf(x, y, u, 'EdgeColor', 'none');
-        axis([-Lx/2, Lx/2, -Ly/2, Ly/2, -1, 1]);
-        xlabel('x'); ylabel('y'); zlabel('u');
-        title(sprintf('Time: %.2f', t));
-        drawnow;
-    end
+    % Update the surface plot data for real-time visualization
+    set(h, 'ZData', u);
+    title(sprintf('Time: %.2f', t));
+    drawnow;
 end
