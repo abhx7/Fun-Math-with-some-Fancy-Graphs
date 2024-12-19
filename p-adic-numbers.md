@@ -101,7 +101,7 @@ In Veritasium's video:
 
 ## Resources
 
-1. **Veritasium Video**: ["How Negative Numbers and Infinity Make Sense in Real Life"](https://www.youtube.com/watch?v=seU6t3W8agA).
+1. **Veritasium Video**: ["Something Strange Happens When You Keep Squaring"](https://youtu.be/tRaq4aYPzCc?si=_mNDwh7yN8OfqyKu).
 2. **Books**:
    - *"P-adic Numbers: An Introduction"* by Fernando Gouvêa.
    - *"An Introduction to the Theory of Numbers"* by Hardy and Wright.
