@@ -1,5 +1,8 @@
 # Cool-Graphs
 
+# Cool Math Repos/Links
+
+https://github.com/hongkangcarl/spherical-PDE-solver
 
 # Cool Math Videos
 
